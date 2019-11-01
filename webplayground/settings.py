@@ -124,7 +124,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # Auth redirect
 
-LOGIN_REDIRECT_URL = 'home' 
+#LOGIN_REDIRECT_URL = 'home' 
 LOGOUT_REDIRECT_URL = 'home' 
 
 if DEBUG:
@@ -133,3 +133,5 @@ if DEBUG:
 else:
     #aqui se configura el servidor de produccion
     pass
+MEDIA_URL='/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
