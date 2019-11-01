@@ -1,5 +1,5 @@
 #from django.contrib.auth.forms import UserCreationForm
-from .forms import UserCreationFormWithEmail
+from .forms import UserCreationFormWithEmail, PofileForm,EmailForm
 from django.views.generic import CreateView
 from django.views.generic.edit import UpdateView
 from django.utils.decorators import method_decorator
@@ -35,8 +35,8 @@ class SignUpView(CreateView):
 
 @method_decorator(login_required, name='dispatch')
 class ProfileUpdate(UpdateView):
-	model = Profile
-	fields = ['avatar','bio', 'link']
+	form_class = PofileForm
+	#fields = ['avatar','bio', 'link']
 	success_url = reverse_lazy('profile')
 	template_name = 'registration/profile_form.html'
 
@@ -45,3 +45,19 @@ class ProfileUpdate(UpdateView):
 		return profile
 
 
+@method_decorator(login_required, name='dispatch')
+class EmailUpdate(UpdateView):
+	form_class = EmailForm
+	#fields = ['avatar','bio', 'link']
+	success_url = reverse_lazy('profile')
+	template_name = 'registration/profile_email_form.html'
+
+	def get_object(self):
+		return self.request.user
+
+	def get_form(self,form_class=None):
+		form = super(EmailUpdate,self).get_form()
+		form.fields['email'].widget = forms.EmailInput(
+			attrs={'class':'form-control mb-2',
+			'placeholder':'Email'})
+		return form
