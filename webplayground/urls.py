@@ -23,4 +23,5 @@ path('pages', include(pages_patterns)),
 path('admin/', admin.site.urls),
 #Paths de auth
 path('accounts/', include('django.contrib.auth.urls')),
+path('accounts/', include('registration.urls')),
 ]

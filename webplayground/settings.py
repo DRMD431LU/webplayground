@@ -126,3 +126,10 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = 'home' 
 LOGOUT_REDIRECT_URL = 'home' 
+
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBacked'
+    EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
+else:
+    #aqui se configura el servidor de produccion
+    pass
