@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404
 class ProfileListView(ListView):
 	model = Profile
 	template_name = 'profiles/profile_list.html'
+	paginate_by=1
 
 class ProfileDetailView(DetailView):
 	model = Profile
