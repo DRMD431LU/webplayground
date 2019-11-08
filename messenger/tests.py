@@ -41,3 +41,7 @@ class ThreadTestCase(TestCase):
 		message3 = Message.objects.create(user=self.user3,content="ola k ase v:")
 		self.thread.messages.add(message1, message2,message3)
 		self.assertEqual(len(self.thread.messages.all()),2)
+
+	def test_find_thread_with_custom_manager(self):
+		self.thread.users.add(self.user1, self.user2)
+		

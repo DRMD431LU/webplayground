@@ -15,6 +15,7 @@ class Message(models.Model):
 class Thread(models.Model):
 	users = models.ManyToManyField(User, related_name='threads')
 	messages = models.ManyToManyField(Message)
+	#
 
 def messages_changed(sender,**kwargs):
 	#print("signal")
